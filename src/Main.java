@@ -22,14 +22,23 @@ public class Main {
 
         while((line = bufferedReader.readLine())!=null)
             stringBuilder.append(line);
+        //String json = stringBuilder.toString();
 
-        Object obj = new JsonParser().parse(String.valueOf(stringBuilder));
+        JsonParser parser = new JsonParser();
+        JsonObject object = (JsonObject) parser.parse(stringBuilder.toString());
+        JsonArray rates = (JsonArray) object.get("rates");
+        JsonObject ratesObject = (JsonObject)rates.get(0);
+        JsonPrimitive mid = (JsonPrimitive) ratesObject.get("mid");
+        System.out.println(mid.toString());
+
+        /*
+        Object obj = new JsonParser().parse(json);
         JsonObject jo = (JsonObject) obj;
-        JsonElement daily = jo.get("daily");
-        Set zero = daily.values();
+        Map daily = (Map) jo.get("daily");
+        Set zero = daily.keySet();
         System.out.println(zero);
+        */
 
-        //line = stringBuilder.toString();
         //System.out.print(line);
     }
 }
