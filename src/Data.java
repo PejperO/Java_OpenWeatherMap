@@ -1,9 +1,14 @@
+/**
+ *
+ * @author Polecki Mikołaj
+ *
+ */
+
 import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Data implements Serializable {
-    //String weather = "hourly", city= "warsaw", latitude= "52.237049", longitude= "21.017532";    // test data - so that I do not have to enter them every time I test the program
     String weather, weatherNegation, city, latitude, longitude;
 
     Scanner keyboard = new Scanner(System.in);
@@ -66,7 +71,7 @@ public class Data implements Serializable {
                 //get = true;
             }
         }
-        /*
+        /* Something is not working properly :|
         if(!get){
             System.out.println("No such city in the file or directory");
             setLatLon();

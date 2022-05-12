@@ -1,8 +1,15 @@
+/**
+ *
+ * @author Polecki Mikołaj
+ *
+ */
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
@@ -33,7 +40,38 @@ public class Main {
             }
         }
         else{
-            System.out.println("Work in progress");
+            for(int i =0; i < 48; ++i) {
+                JsonArray hourly = (JsonArray) object.get("hourly");
+                JsonObject hourlyObject = (JsonObject) hourly.get(i);
+
+                String tempMin = "No Data";   // No such data in Hourly forecast weather data API response
+                String tempMax = "No Data";   // No such data in Hourly forecast weather data API response
+                int tempAverage = (int) Math.round(Double.parseDouble(hourlyObject.get("temp").toString()) - 273.15);
+                int pop = (int) Math.round(Double.parseDouble(hourlyObject.get("pop").toString()) * 100);
+
+                String msg = "Minimum temperature: " + tempMin + "°C\n" +
+                             "Maximum temperature: " + tempMax + "°C\n" +
+                             "Average temperature: " + tempAverage + "°C\n" +
+                             "Probability of precipitation : " + pop + "%\n";
+
+                System.out.println("Hour " + i);
+                System.out.println(msg);
+            }
+        }
+        end(args);
+    }
+
+    private static void end(String[] args){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Type \"stop\" to end or \"next\" to restart: ");
+        String end = keyboard.nextLine();
+        switch (end) {
+            case "stop" -> System.exit(0);
+            case "next" -> main(args);
+            default -> {
+                System.out.println("No such type");
+                end(args);
+            }
         }
     }
 }
