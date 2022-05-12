@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Data implements Serializable {
     //String weather = "hourly", city= "warsaw", latitude= "52.237049", longitude= "21.017532";    // test data - so that I do not have to enter them every time I test the program
-    String weather, city, latitude, longitude;
+    String weather, weatherNegation, city, latitude, longitude;
 
     Scanner keyboard = new Scanner(System.in);
     FileReader fileReader = null;
@@ -17,6 +17,7 @@ public class Data implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
 
     private void setFileReader(){
@@ -40,8 +41,8 @@ public class Data implements Serializable {
         weather = keyboard.nextLine();
 
         switch (weather) {
-            case "daily" -> weather = "hourly";
-            case "hourly" -> weather = "daily";
+            case "daily" -> weatherNegation = "hourly";
+            case "hourly" -> weatherNegation = "daily";
             default -> {
                 System.out.println("No such type");
                 setWeather();
