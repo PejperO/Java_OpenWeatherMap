@@ -3,7 +3,7 @@
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
 	<levels>
-		<level name="gson-2.9.0" value="project"/>
 		<level name="lib" value="project"/>
+		<level name="gson-2.9.0" value="project"/>
 	</levels>
 </component>
